@@ -1,9 +1,10 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram import Router, F
+from app.keyboards.items import item_kb
 
 rt = Router()
 
 @rt.callback_query(F.data == "item-1")
 async def items(cl: CallbackQuery):
-    await cl.message.edit_text("Item-1")
+    await cl.message.edit_text("Item-1", reply_markup=item_kb)
     await cl.answer("")
