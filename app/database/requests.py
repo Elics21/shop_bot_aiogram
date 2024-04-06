@@ -1,6 +1,6 @@
 from app.database.model import async_session
 from app.database.model import User, Item, Category
-from sqlalchemy import select
+from sqlalchemy import select, func
 
 async def set_user(tg_id, first_name, balance):
     async with async_session() as session:
@@ -9,6 +9,13 @@ async def set_user(tg_id, first_name, balance):
             user = User(tg_id=tg_id, first_name=first_name, balance=balance)
             session.add(user)
             await session.commit()
+
+async def set_category(name):
+    async with async_session() as session:
+        category_count = await session.scalar(select(func.count(Category.id)))
+        category = Category(id=category_count + 1, name=name)
+        session.add(category)
+        await session.commit()
 
 async def get_categories():
     async with async_session() as session:

@@ -1,6 +1,6 @@
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery
 from aiogram import Router, F
-from app.keyboards.items import items
+from app.keyboards.user.items import items
 
 rt = Router()
 

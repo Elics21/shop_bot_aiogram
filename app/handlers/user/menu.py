@@ -1,7 +1,7 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram import Router, F
 
-from app.keyboards.menu import menu
+from app.keyboards.user.menu import menu
 from app.database.requests import get_user_info
 
 rt = Router()

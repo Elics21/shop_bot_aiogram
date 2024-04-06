@@ -1,7 +1,7 @@
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram import Router
-from app.keyboards.main import main_kb
+from app.keyboards.user.main import main_kb
 import app.database.requests as rq
 
 rt = Router()
