@@ -20,6 +20,7 @@ async def add_category(m: Message, state: FSMContext):
     if m.from_user.id in ADMINS:
         await m.answer("Введите название категории:")
         await state.set_state(StateAddCategory.GET_NAME)
+
 @rt.message(StateAddCategory.GET_NAME)
 async def get_category_name(m: Message, state: FSMContext):
     # await state.update_data(category_name = m.text)
