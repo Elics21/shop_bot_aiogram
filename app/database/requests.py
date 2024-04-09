@@ -1,6 +1,6 @@
 from app.database.model import async_session
 from app.database.model import User, Item, Category
-from sqlalchemy import select, func, delete
+from sqlalchemy import select, func, delete, update
 
 async def set_user(tg_id, first_name, balance):
     async with async_session() as session:
@@ -21,9 +21,14 @@ async def get_categories():
     async with async_session() as session:
         return await session.scalars(select(Category))
 
-async def delete_categories(category_name):
+async def delete_category(category_name):
     async with async_session() as session:
         await session.execute(delete(Category).where(Category.name == category_name))
+        await session.commit()
+
+async def change_category(category_name, new_category_name):
+    async with async_session() as session:
+        await session.execute(update(Category).where(Category.name == category_name).values(name=new_category_name))
         await session.commit()
 
 async def get_category_items(category_id):

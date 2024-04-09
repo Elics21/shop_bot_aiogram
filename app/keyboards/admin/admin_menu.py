@@ -20,3 +20,9 @@ async def admin_delete_categoryes_kb(categoryes: List[str]):
     for category in categoryes:
         keyboard.add(InlineKeyboardButton(text=category, callback_data=f"del_category_{category}"))
     return keyboard.adjust(1).as_markup()
+
+async def admin_change_categoryes_kb(categoryes: List[str]):
+    keyboard = InlineKeyboardBuilder()
+    for category in categoryes:
+        keyboard.add(InlineKeyboardButton(text=category, callback_data=f"change_category_{category}"))
+    return keyboard.adjust(1).as_markup()
